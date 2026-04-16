@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chetna Agarwal — Filmmaker & Narrative Producer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #0D1B4B;
+  --gold: #C9A84C;
+  --cream: #F5F0E8;
+  --paper: #FAF7F2;
+  --ink: #1A1612;
+  --gray: #6B6457;
+  --light-gray: #B8B0A4;
+  --rule: rgba(201, 168, 76, 0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.08s ease;
+}
+
+/* FILM GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: grain 0.5s steps(1) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(3%, 2%); }
+  30% { transform: translate(-1%, 4%); }
+  40% { transform: translate(4%, -1%); }
+  50% { transform: translate(-3%, 3%); }
+  60% { transform: translate(2%, -4%); }
+  70% { transform: translate(-4%, 1%); }
+  80% { transform: translate(1%, -2%); }
+  90% { transform: translate(3%, 4%); }
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: normal;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 60px; right: 60px;
+  height: 1px;
+  background: var(--rule);
+}
+
+.nav-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  opacity: 0;
+  animation: fadeIn 1s ease 2.2s forwards;
+}
+
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--light-gray);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 60px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(13, 27, 75, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 50%),
+    var(--ink);
+  z-index: 0;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(64px, 10vw, 140px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.5s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-tagline {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-style: italic;
+  color: var(--light-gray);
+  max-width: 600px;
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.7s forwards;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 60px;
+  opacity: 0;
+  animation: slideUp 0.8s ease 0.9s forwards;
+}
+
+.hero-meta-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--light-gray);
+  text-transform: uppercase;
+}
+
+.hero-meta-item span {
+  display: block;
+  font-size: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0;
+  margin-bottom: 4px;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-scroll::before {
+  content: '';
+  width: 1px;
+  height: 60px;
+  background: var(--rule);
+  display: block;
+}
+
+/* SECTIONS */
+section {
+  padding: 120px 60px;
+  position: relative;
+}
+
+.section-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-number::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-intro {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--light-gray);
+  max-width: 640px;
+  margin-bottom: 80px;
+  line-height: 1.8;
+}
+
+/* PHILOSOPHY SECTION */
+.philosophy {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy::before {
+  content: '"';
+  position: absolute;
+  top: -60px;
+  left: 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 400px;
+  color: rgba(201, 168, 76, 0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.philosophy-statement {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--cream);
+  max-width: 900px;
+  margin-bottom: 60px;
+}
+
+.philosophy-statement em { color: var(--gold); font-style: normal; }
+
+.philosophy-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  margin-top: 80px;
+}
+
+.pillar {
+  background: var(--navy);
+  padding: 40px 32px;
+  transition: background 0.3s ease;
+}
+
+.pillar:hover { background: rgba(201, 168, 76, 0.05); }
+
+.pillar-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.pillar-text {
+  font-size: 16px;
+  color: var(--light-gray);
+  line-height: 1.7;
+}
+
+/* WORK GRID */
+.work-section { background: var(--ink); }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: rgba(255,255,255,0.03);
+}
+
+.work-item {
+  background: var(--ink);
+  padding: 52px 48px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease;
+  cursor: none;
+}
+
+.work-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  transform-origin: bottom;
+}
+
+.work-item:hover { background: rgba(13, 27, 75, 0.4); }
+.work-item:hover::before { transform: scaleY(1); }
+
+.work-item.featured {
+  grid-column: span 2;
+  background: rgba(13, 27, 75, 0.3);
+}
+
+.work-item.featured::before { background: var(--gold); transform: scaleY(1); }
+
+.work-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.work-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.work-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.work-desc {
+  font-size: 16px;
+  color: var(--light-gray);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.work-year {
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(184, 176, 164, 0.3);
+  letter-spacing: 0.1em;
+}
+
+.watch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+.watch-link:hover {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--gold);
+}
+
+.watch-link::before {
+  content: '▶';
+  font-size: 8px;
+}
+
+/* CREDENTIALS */
+.credentials { background: #111111; }
+
+.credentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.credential-item {
+  border-top: 1px solid var(--rule);
+  padding-top: 32px;
+}
+
+.credential-name {
+  font-size: 20px;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.credential-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.credential-desc {
+  font-size: 15px;
+  color: var(--light-gray);
+  line-height: 1.65;
+}
+
+/* AD CREDITS */
+.ad-section { background: var(--ink); }
+
+.brands-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.brand-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--light-gray);
+  border: 1px solid rgba(184, 176, 164, 0.2);
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+.brand-tag:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ABOUT */
+.about { background: var(--navy); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-text {
+  font-size: 20px;
+  color: var(--light-gray);
+  line-height: 1.9;
+}
+
+.about-text p { margin-bottom: 28px; }
+.about-text p:last-child { margin-bottom: 0; }
+
+.about-facts {
+  border-left: 1px solid var(--rule);
+  padding-left: 60px;
+}
+
+.about-fact {
+  margin-bottom: 48px;
+}
+
+.about-fact-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.about-fact-value {
+  font-size: 18px;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+/* CONTACT */
+.contact {
+  background: var(--ink);
+  text-align: center;
+  padding: 140px 60px;
+}
+
+.contact-line {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(14px, 2vw, 20px);
+  font-style: italic;
+  color: var(--light-gray);
+  max-width: 600px;
+  margin: 0 auto 60px;
+  line-height: 1.8;
+}
+
+.contact-email {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 400;
+  color: var(--cream);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+  line-height: 1.1;
+}
+
+.contact-email:hover { color: var(--gold); }
+
+.contact-phone {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 60px;
+}
+
+.contact-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--rule);
+  margin: 40px auto;
+}
+
+.contact-location {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--light-gray);
+  text-transform: uppercase;
+}
+
+/* FOOTER */
+footer {
+  padding: 32px 60px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  text-transform: uppercase;
+}
+
+.footer-tagline {
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(184, 176, 164, 0.4);
+}
+
+/* ANIMATIONS */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 24px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-meta { flex-direction: column; gap: 32px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-item.featured { grid-column: span 1; }
+  .philosophy-pillars { grid-template-columns: 1fr 1fr; }
+  .credentials-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-facts { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 40px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+  .hero-scroll { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Chetna Agarwal</div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-label">Filmmaker · Narrative Producer · Editor</div>
+    <h1 class="hero-title">I look,<br>therefore<br>I <em>film.</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span>16</span>Years
+      </div>
+      <div class="hero-meta-item">
+        <span>2</span>International Documentaries
+      </div>
+      <div class="hero-meta-item">
+        <span>30+</span>Brand Campaigns
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- WORK -->
+<section class="work-section" id="work">
+  <div class="section-number">02 — Selected Work</div>
+  <h2 class="section-title reveal">Documentary &<br><em>Social Impact</em></h2>
+  <p class="section-intro reveal">Films built around people, causes, and consequences.</p>
+
+  <div class="work-grid">
+    <div class="work-item featured reveal">
+      <div class="work-tag">Feature Documentary</div>
+      <h3 class="work-title">Fire in the Blood</h3>
+      <div class="work-role">Associate Producer · Dir. Dylan Mohan Gray</div>
+      <p class="work-desc">The documentary on the systematic denial of affordable HIV/AIDS medication to the developing world. Screened globally. Credited with influencing policy that saved millions of lives.</p>
+      <a href="https://youtu.be/eVf2UUu_w4o?si=1orvkFIHC-URmqlp" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2012–13</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Feature Documentary</div>
+      <h3 class="work-title">The Unseen Sequence</h3>
+      <div class="work-role">Associate Director · Dir. Sumantra Ghosal</div>
+      <p class="work-desc">A documentary portrait of Bharatanatyam master Malavika Sarukkai — her art, her philosophy, and her role in revitalising a classical form for a contemporary world.</p>
+      <a href="https://youtu.be/eIoZpWq0bqU?si=QhZUeKMb28wox55U" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2011–12</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Short Documentary · Director</div>
+      <h3 class="work-title">Beyond Cure in Leprosy</h3>
+      <div class="work-role">Director</div>
+      <p class="work-desc">3.5 million people in India live with leprosy-related disabilities long after a medical cure exists. Research: Foundation of Medical Research, Mumbai.</p>
+      <div class="work-year">2013–14</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Short Documentary · Director</div>
+      <h3 class="work-title">Aapa</h3>
+      <div class="work-role">Director · Debut Film</div>
+      <p class="work-desc">Yasmin Ali Shaikh united fractured communities during the 1993 Mumbai communal riots. She continues her legal advocacy in Nagpada today.</p>
+      <a href="https://vimeo.com/679171739" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2014–15</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Short Film · Co-Director</div>
+      <h3 class="work-title">Become a CRY Volunteer</h3>
+      <div class="work-role">Co-Director / Co-Producer · Child Rights and You</div>
+      <p class="work-desc">A short film built to move people toward action — made for one of India's most respected child rights organisations.</p>
+      <a href="https://youtu.be/VhHC_5JfbvQ?si=DaUMxdyGjdYvzIkL" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2015</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Audio-Visual Series · Director</div>
+      <h3 class="work-title">Pratibimb</h3>
+      <div class="work-role">Director / Producer · Rangoonwala Foundation India Trust</div>
+      <p class="work-desc">Directed and produced for RFIT — documenting the organisation's impact on women and children in Mumbai's underserved communities.</p>
+      <a href="https://vimeo.com/699748561" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2015–16</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 80px;">
+    <div class="section-number">02b — Series & Broadcast</div>
+    <h2 class="section-title reveal">Platform &<br><em>Broadcast</em></h2>
+    <p class="section-intro reveal">Development and production at institutional scale.</p>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-item featured reveal">
+      <div class="work-tag">Amazon Prime Video · Series Development</div>
+      <h3 class="work-title">Mission Start Ab</h3>
+      <div class="work-role">Series Development Producer · EndemolShine India</div>
+      <p class="work-desc">Led pre-production development of this Amazon Prime Video original — concept, story architecture, format design, and a proof of concept treatment video produced for platform commissioning. Ten grassroots entrepreneurs and their Made-for-India solutions.</p>
+      <a href="https://youtu.be/Bb2NkNu46x4?si=8KbhZymjKzCX4ADY" target="_blank" class="watch-link">Watch Proof of Concept</a>
+      <div class="work-year">2019–20</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Broadcast · Leadership</div>
+      <h3 class="work-title">Times Network</h3>
+      <div class="work-role">Director of Video Production</div>
+      <p class="work-desc">Led branded video production — a 10-episode series, Future of Work initiative, and 100+ executive interviews from development through delivery.</p>
+      <a href="https://youtu.be/03TgZhxOjSc?si=jZCE0jGK8TbJ6i83" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2020–22</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Post Production · Comedy Series</div>
+      <h3 class="work-title">Son of Abish Season 08</h3>
+      <div class="work-role">Lead Post Producer · Only Much Louder</div>
+      <p class="work-desc">Oversaw complete post-production pipeline for this long-running series at one of India's most respected independent music and content companies.</p>
+      <a href="https://youtu.be/4I-xbxLbKMc?si=qIEs4vhLgGJzOCT3" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2022–23</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 80px;">
+    <div class="section-number">02c — Editorial</div>
+    <h2 class="section-title reveal"><em>Narrative</em><br>Editing</h2>
+    <p class="section-intro reveal">Finding what a film is really about once the footage is in.</p>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-item reveal">
+      <div class="work-tag">Narrative Editor · Remote · US Client</div>
+      <h3 class="work-title">Side With Love: The Gathering</h3>
+      <div class="work-role">Narrative Editor · Inquilaabis for UUA</div>
+      <p class="work-desc">Full post-production on a 4.5-minute branded documentary film and social cutdowns for the Unitarian Universalist Association. Color grade, audio mix, motion graphics, captions. Delivered remotely from Mumbai.</p>
+      <a href="https://youtu.be/n4rueTcYp2U?si=JTHK7LgPu3AK2_bw" target="_blank" class="watch-link">Watch</a>
+      <div class="work-year">2025–26</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Narrative Editor · Non-Profit</div>
+      <h3 class="work-title">Indian House Foundation</h3>
+      <div class="work-role">Narrative Editor & Video Editor</div>
+      <p class="work-desc">Edited a series of short diaspora portrait films — each subject profile shaped into a short, emotionally honest portrait connecting global Indian audiences to critical social issues.</p>
+      <a href="https://youtu.be/3CK_uJterFg?si=UwPAzwkQQg6MucXU" target="_blank" class="watch-link">Watch Film 1</a>
+      <a href="https://youtu.be/bSqdgl95PGs?si=of8YeI7k3JyO4Ug0" target="_blank" class="watch-link" style="margin-left:12px;">Watch Film 2</a>
+      <div class="work-year">2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL FILMS -->
+<section style="background: #0a0a0a; padding: 120px 60px;">
+  <div class="section-number">03 — Personal Work</div>
+  <h2 class="section-title reveal">A life made of<br><em>small films</em><br>and big feelings.</h2>
+  <p class="section-intro reveal">Personal filmmaking made alongside professional work.</p>
+
+  <div class="work-grid" style="margin-top: 20px;">
+    <div class="work-item reveal">
+      <div class="work-tag">Director · Writer · Independent</div>
+      <h3 class="work-title">Lost in Spiti</h3>
+      <div class="work-role">Director, Cinematographer</div>
+      <p class="work-desc">An 8-minute meditation on landscape and time — built around the relationship between image and sound in the Spiti Valley. Made alone.</p>
+      <a href="https://vimeo.com/1052007016" target="_blank" class="watch-link">Watch</a>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Director · Writer · Independent</div>
+      <h3 class="work-title">Yaadon Ki Kavita</h3>
+      <div class="work-role">Director, Writer</div>
+      <p class="work-desc">Monsoon as memory. A short film about what returns when the rain does.</p>
+      <a href="https://vimeo.com/719072066" target="_blank" class="watch-link">Watch</a>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Director · Writer · Independent</div>
+      <h3 class="work-title">Grandma's Pickled Legacy</h3>
+      <div class="work-role">Director, Writer</div>
+      <p class="work-desc">Family memory held in a grandmother's achaar jars — an intimate study of love and quiet resilience.</p>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-tag">Director · Editor · Independent</div>
+      <h3 class="work-title">The Rooms That Made Me</h3>
+      <div class="work-role">Director, Editor</div>
+      <p class="work-desc">An experimental film on how physical spaces hold and shape personal history and identity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="credentials" id="credentials">
+  <div class="section-number">04 — Credentials</div>
+  <h2 class="section-title reveal">Platforms &<br><em>Partners</em></h2>
+
+  <div class="credentials-grid">
+    <div class="credential-item reveal reveal-delay-1">
+      <div class="credential-name">Prime Video</div>
+      <div class="credential-role">EndemolShine India</div>
+      <div class="credential-desc">Series Development Producer, Mission Start Ab</div>
+    </div>
+    <div class="credential-item reveal reveal-delay-2">
+      <div class="credential-name">Times Network</div>
+      <div class="credential-role">Mumbai</div>
+      <div class="credential-desc">Director of Video Production — broadcast, series, thought leadership</div>
+    </div>
+    <div class="credential-item reveal reveal-delay-3">
+      <div class="credential-name">Only Much Louder</div>
+      <div class="credential-role">India's Independent Music Ecosystem</div>
+      <div class="credential-desc">Lead Post Producer, Son of Abish Season 08</div>
+    </div>
+    <div class="credential-item reveal reveal-delay-1">
+      <div class="credential-name">Unitarian Universalist Association</div>
+      <div class="credential-role">United States · Remote</div>
+      <div class="credential-desc">Narrative Editor, Side With Love: The Gathering</div>
+    </div>
+    <div class="credential-item reveal reveal-delay-2">
+      <div class="credential-name">Child Rights and You</div>
+      <div class="credential-role">Social Impact</div>
+      <div class="credential-desc">Co-Director, Become a CRY Volunteer</div>
+    </div>
+    <div class="credential-item reveal reveal-delay-3">
+      <div class="credential-name">Foundation of Medical Research</div>
+      <div class="credential-role">Mumbai</div>
+      <div class="credential-desc">Research collaboration, Beyond Cure in Leprosy</div>
+    </div>
+  </div>
+</section>
+
+<!-- AD CREDITS -->
+<section class="ad-section">
+  <div class="section-number">05 — Advertising</div>
+  <h2 class="section-title reveal"><em>60+</em> Brand<br>Campaigns</h2>
+  <p class="section-intro reveal">Associate Producer · Associate Director · Assistant Director · Post Producer across major campaigns with leading production houses and directors.</p>
+
+  <div class="brands-list reveal">
+    <span class="brand-tag">Meta</span>
+    <span class="brand-tag">Microsoft</span>
+    <span class="brand-tag">Tata Motors</span>
+    <span class="brand-tag">Dabur</span>
+    <span class="brand-tag">Nivea</span>
+    <span class="brand-tag">Asian Paints</span>
+    <span class="brand-tag">Crompton</span>
+    <span class="brand-tag">Haldiram's</span>
+    <span class="brand-tag">Britannia</span>
+    <span class="brand-tag">Garnier</span>
+    <span class="brand-tag">Honda</span>
+    <span class="brand-tag">Bajaj</span>
+    <span class="brand-tag">Lifebuoy</span>
+    <span class="brand-tag">McDowell's</span>
+    <span class="brand-tag">Johnson Tiles</span>
+    <span class="brand-tag">Liberty Shoes</span>
+    <span class="brand-tag">Sahara Q Shop</span>
+    <span class="brand-tag">Angel One</span>
+    <span class="brand-tag">Practo</span>
+    <span class="brand-tag">Knorr</span>
+    <span class="brand-tag">Oreo</span>
+    <span class="brand-tag">Parle</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-number">06 — About</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title reveal">I look,<br>therefore<br><em>I film.</em></h2>
+      <div class="about-text reveal">
+        <p>I don't define myself by roles.</p>
+        <p>Sixteen years of making things — documentary, series, editorial work, branded content. Sometimes directing. Sometimes producing. Sometimes in the edit, finding what a film is really about.</p>
+        <p>The work I keep coming back to lives at the intersection of people and consequence. Films built around real stakes.</p>
+        <p>I care about cinema, literature, and the quiet power of visual storytelling.</p>
+      </div>
+    </div>
+    <div class="about-facts reveal">
+      <div class="about-fact">
+        <div class="about-fact-label">Based</div>
+        <div class="about-fact-value">Mumbai, India</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Available</div>
+        <div class="about-fact-value">Contract — remote and on-site</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Specialisms</div>
+        <div class="about-fact-value">Documentary Direction<br>Series Development<br>Narrative Editing<br>Social Impact Storytelling</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Languages</div>
+        <div class="about-fact-value">English · Hindi</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Tools</div>
+        <div class="about-fact-value">Final Cut Pro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="contact-line reveal">I'm drawn to stories that breathe — where landscapes hold memory, and edits hold intention.</p>
+  <a href="mailto:chetna.agi@gmail.com" class="contact-email reveal">chetna.agi@gmail.com</a>
+  <div class="contact-phone reveal">+91 9769886793</div>
+  <div class="contact-divider"></div>
+  <div class="contact-location reveal">Mumbai, India · Available for contract</div>
+</section>
+
+<footer>
+  <div class="footer-name">Chetna Agarwal · 2026</div>
+  <div class="footer-tagline">I look, therefore I film.</div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX - 4 + 'px';
+  cursor.style.top = mouseY - 4 + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX - 18) * 0.12;
+  ringY += (mouseY - ringY - 18) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Hover effects
+document.querySelectorAll('a, .work-item, .pillar, .brand-tag').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2.5)';
+    cursorRing.style.transform = 'scale(1.5)';
+    cursorRing.style.borderColor = 'rgba(201, 168, 76, 0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    cursorRing.style.transform = 'scale(1)';
+    cursorRing.style.borderColor = 'rgba(201, 168, 76, 0.5)';
+  });
+});
+
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
